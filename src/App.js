@@ -1,24 +1,46 @@
-import logo from './logo.svg';
-import './App.css';
+import { Fragment, useState } from 'react'
+import Form from './components/Form/Form'
+import Navbar from './components/Navbar/Navbar'
+import Task from './components/Task/Task';
 
 function App() {
+
+  const [data, setData] = useState({
+    name: '',
+    task: ''
+  })
+  const [tasks, setTasks] = useState([])
+  const [editing, setEditing] = useState(false)
+  const [id, setId] = useState(undefined)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Fragment>
+      <Navbar />
+      <div className="container mt-5">
+        <div className="row">
+          <div className="col-md-4">
+            <Form 
+              data={data}
+              setData={setData}
+              tasks={tasks}
+              setTasks={setTasks}
+              editing={editing}
+              setEditing={setEditing}
+              id={id}
+            />
+          </div>
+          <div className="col-md-6">
+            <Task 
+              setData={setData}
+              tasks={tasks}
+              setTasks={setTasks}
+              setEditing={setEditing}
+              setId={setId}
+            />
+          </div>
+        </div>
+      </div>
+    </Fragment>
   );
 }
 
