@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { v4 as uuidv4 } from 'uuid';
 
-const Form = ({tasks, setTasks, data, setData, editing, setEditing, id}) => {
+const Form = ({tasks, setTasks, data, setData, editing, setEditing, setId, id}) => {
 
   const [error, setError] = useState('')
 
@@ -39,9 +39,8 @@ const Form = ({tasks, setTasks, data, setData, editing, setEditing, id}) => {
         {id: uuidv4(), name, task}
       ])
     } else {
-      setTasks([
-        {id, name, task}
-      ])
+      setTasks(tasks.map(tsk => tsk.id === id ? { ...tsk, name, task } : tsk))
+      setId('')
       setEditing(false)
     }
 

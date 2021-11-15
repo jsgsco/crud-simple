@@ -26,6 +26,7 @@ function App() {
               setTasks={setTasks}
               editing={editing}
               setEditing={setEditing}
+              setId={setId}
               id={id}
             />
           </div>
